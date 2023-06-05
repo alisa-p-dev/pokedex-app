@@ -1,3 +1,4 @@
+let pokemonRepository = (function () {
 let pokemonList = [
   {
     name: "Squirtle",
@@ -20,13 +21,31 @@ let pokemonList = [
     types: ["fairy", "flying"],
   },
 ];
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
 
-for (let i = 0; i < pokemonList.length; i++) {
-    if (pokemonList[i].height > 10) {
-        document.write( `${pokemonList[i].name} (height: ${pokemonList[i].height}) - Wow, that\’s big!<br>`);
-    }
-  else { 
-    document.write( `${pokemonList[i].name} (height: ${pokemonList[i].height})<br>`
-  );
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+  };
+})();
+
+//Display the list of pokemons names and height. Adding a comment if the height is bigger then 10
+function displayPokemon(pokemon) {
+  if (pokemon.height > 10) {
+    document.write(
+      `${pokemon.name} (height: ${pokemon.height}) - Wow, that\’s big!<br>`
+    );
+  } else {
+    document.write(`${pokemon.name} (height: ${pokemon.height})<br>`);
+  }
 }
-}
+
+pokemonRepository.getAll().forEach(function(pokemon) {
+    displayPokemon(pokemon);
+  });
