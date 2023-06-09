@@ -50,25 +50,35 @@ let pokemonRepository = (function () {
     return filteredPokemon;
   }
 
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    //addEventListener('click', showDetails);
+    showDetails(button, pokemon);
+  }
+    
+function showDetails(button, pokemon) {
+  button.addEventListener('click', pokemon => console.log(pokemon.name));
+  
+}
+
+
   return {
     add: add,
     getAll: getAll,
     findByName: findByName,
+    addListItem: addListItem,
   };
 })();
 
-function displayPokemon(pokemon) {
-  if (pokemon.height > 10) {
-    document.write(
-      `${pokemon.name} (height: ${pokemon.height}) - Wow, that's big!<br>`
-    );
-  } else {
-    document.write(`${pokemon.name} (height: ${pokemon.height})<br>`);
-  }
-}
 
 pokemonRepository.getAll().forEach(function (pokemon) {
-  displayPokemon(pokemon);
+  pokemonRepository.addListItem(pokemon);
 });
-const pokemonByName = pokemonRepository.findByName("Squirtle");
-console.log(pokemonByName);
+// const pokemonByName = pokemonRepository.findByName("Squirtle");
+// console.log(pokemonByName);
