@@ -21,9 +21,22 @@ let pokemonRepository = (function () {
     return filteredPokemon;
   }
 
+  function showLoadingMessage(){
+    let loadingMessage = document.createElement("p");
+    loadingMessage.innerText = "Loading...";
+    document.body.appendChild(loadingMessage);
+  }
+
+  function hideLoadingMessage(){
+    let loadingMessage = document.querySelector("p");
+    loadingMessage.remove();
+  }
+
   function loadList() {
+    showLoadingMessage();
     return fetch(apiURL)
       .then(function (response) {
+        hideLoadingMessage();
         return response.json();
       })
       .then(function (json) {
@@ -37,14 +50,17 @@ let pokemonRepository = (function () {
         });
       })
       .catch(function (error) {
+        hideLoadingMessage();
         console.error(error);
       });
   }
 
   function loadDetails(item) {
+    showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url)
       .then(function (response) {
+        hideLoadingMessage();
         return response.json();
       })
       .then(function (details) {
@@ -53,6 +69,7 @@ let pokemonRepository = (function () {
         item.types = details.types;
       })
       .catch(function (error) {
+        hideLoadingMessage();
         console.error(error);
       });
   }
