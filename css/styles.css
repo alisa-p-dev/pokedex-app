@@ -7,7 +7,6 @@ margin: 0;}
 
 .list-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   padding-inline-start: 0px;
   grid-gap: 20px;
   list-style: none;
@@ -23,4 +22,22 @@ margin: 0;}
 
 .modal-content {
   background-color: #fff0bd;
+}
+
+@media (min-width: 550px) {
+  .list-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 760px) {
+  .list-group {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .list-group {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
