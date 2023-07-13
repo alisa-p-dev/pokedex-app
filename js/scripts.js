@@ -14,22 +14,22 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  function searchItem () {
+  function searchItem() {
     let searchInput = document.querySelector("input").value.toLowerCase();
     let listArray = document.querySelectorAll(".list-group-item");
 
-    listArray.forEach(pokemon => {
-        let listBtn = pokemon.querySelector(".btn").innerText.toLowerCase();
-        if (listBtn.includes(searchInput)) {
-            pokemon.style.display = "inline-block";
-        } else {
-            pokemon.style.display = "none";
-        }
+    listArray.forEach((pokemon) => {
+      let listBtn = pokemon.querySelector(".btn").innerText.toLowerCase();
+      if (listBtn.includes(searchInput)) {
+        pokemon.style.display = "inline-block";
+      } else {
+        pokemon.style.display = "none";
+      }
     });
-};
+  }
 
- let searchInput = document.querySelector("input");
-searchInput.addEventListener("input", () => searchItem());
+  let searchInput = document.querySelector("input");
+  searchInput.addEventListener("input", () => searchItem());
 
   function showLoadingMessage() {
     let loadingMessage = document.createElement("p");
@@ -98,7 +98,8 @@ searchInput.addEventListener("input", () => searchItem());
       "rounded"
     );
 
-    button.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+    button.innerText =
+      pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     button.classList.add("btn");
     button.setAttribute("data-toggle", "modal");
     button.setAttribute("data-target", "#pokemonModal");
